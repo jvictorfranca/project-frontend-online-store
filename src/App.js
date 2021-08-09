@@ -1,9 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import './services/api';
+import getCategories from './services/api';
 
 function App() {
+  getCategories();
   return (
     <div className="App">
       <header className="App-header">
@@ -15,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {/* Learn React  */}
+          {}
         </a>
       </header>
     </div>

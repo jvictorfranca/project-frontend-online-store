@@ -1,4 +1,4 @@
-export async function getCategories() {
+export default async function getCategories() {
   const QUERY = 'categories';
   fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${QUERY}`)
     .then((response) => response.json())
