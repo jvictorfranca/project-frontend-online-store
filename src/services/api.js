@@ -1,9 +1,8 @@
-export default async function getCategories() {
-  const response = await fetch('https://api.mercadolibre.com/sites/MLB/search?q=categories');
+export async function getCategories() {
+  const response = await fetch('https://api.mercadolibre.com/sites/MLB/categories');
 
-  const Categorias = response.json();
-//s
-  console.log(Categorias);
+  const Categorias = await response.json();
+
   return Categorias;
 }
 
