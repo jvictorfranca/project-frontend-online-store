@@ -5,6 +5,7 @@ import './App.css';
 import getCategories from './services/api';
 
 import ProductsList from './Components/ProductsList';
+import ShoppingCart from './Components/ShoppingCart';
 
 function App() {
   getCategories();
@@ -12,6 +13,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Route exact path="/" component={ ProductsList } />
+        <Route path="/cart" component={ ShoppingCart } />
       </BrowserRouter>
     </div>
   );

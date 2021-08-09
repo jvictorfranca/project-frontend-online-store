@@ -1,4 +1,5 @@
 import React from 'react';
+import CartButton from './CartButton';
 
 class ProductsList extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class ProductsList extends React.Component {
     const { searching } = state;
     return (
       <main data-testid="home-initial-message">
+        <CartButton />
         {searching === 'none'
           ? <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
           : <p>Lista de produtos a adicionar</p>}
