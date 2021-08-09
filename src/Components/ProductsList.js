@@ -15,7 +15,7 @@ class ProductsList extends React.Component {
       <main data-testid="home-initial-message">
         {searching === 'none'
           ? <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
-          : <p>Lista de produtos</p>}
+          : <p>Lista de produtos a adicionar</p>}
       </main>
     );
   }
