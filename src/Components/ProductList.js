@@ -8,13 +8,15 @@ class ProductList extends React.Component {
     return (
       products.length === 0
         ? <p>Nenhum produto encontrado</p>
-        : <section>
-          {products.map((product) => (<ProductCard
-            product={ product }
-            key={ product.id }
-          />))}
-
-        </section>);
+        : (
+          <section>
+            {products.map((product) => (<ProductCard
+              product={ product }
+              key={ product.id }
+            />))}
+          </section>
+        )
+    );
   }
 }
 

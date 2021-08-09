@@ -27,7 +27,6 @@ class ProductsList extends React.Component {
     const updated = await api.getProductsFromCategoryAndQuery(category, searching);
     this.setState({
       products: updated.results });
-    console.log(this.state.products);
   }
 
   render() {
