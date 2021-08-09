@@ -3,8 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import './App.css';
 
-import ProductsList from './Components/ProductsList';
-import ShoppingCart from './Components/ShoppingCart';
+import ShoppingCart from './pages/ShoppingCart';
+import ProductsList from './pages/ProductsList';
 
 function App() {
   return (
