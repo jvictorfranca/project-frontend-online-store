@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductList from '../Components/ProductList';
+import CartButton from '../Components/CartButton';
 import * as api from '../services/api';
 
 class ProductsList extends React.Component {
@@ -49,6 +50,7 @@ class ProductsList extends React.Component {
         >
           Click
         </button>
+        <CartButton />
         {searching === '' && category === ''
           ? <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
           : <ProductList products={ products } />}
