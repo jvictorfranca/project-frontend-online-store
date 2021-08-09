@@ -1,4 +1,4 @@
-export default async function getCategories() {
+export async function getCategories() {
   const response = await fetch('https://api.mercadolibre.com/sites/MLB/search?q=categories');
 
   const Categorias = response.json();
