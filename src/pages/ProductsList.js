@@ -41,6 +41,7 @@ class ProductsList extends React.Component {
     api.getProductsFromCategoryAndQuery(category, searching).then((response) => {
       console.log(response);
       this.setState({
+        doneSearching: true,
         products: response.results,
       });
     });
@@ -68,9 +69,9 @@ class ProductsList extends React.Component {
           Click
         </button>
         <CartButton />
-        {searching === '' && category === ''
-          ? <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
-          : <ProductList products={ products } />}
+        {doneSearching
+          ? <ProductList products={ products } />
+          : <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>}
 
         <CategoryList callback={ this.categorySearch } />
       </main>
