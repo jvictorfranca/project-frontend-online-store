@@ -35,6 +35,8 @@ class App extends React.Component {
   }
 
   render() {
+    const { cart } = this.state;
+
     return (
       <div className="App">
         <BrowserRouter>
@@ -45,11 +47,13 @@ class App extends React.Component {
           />
           <Route
             path="/cart"
-            render={ () => <ShoppingCart addToCart={ this.addToCart } /> }
+            render={ () => <ShoppingCart addToCart={ this.addToCart } cart={ cart } /> }
           />
           <Route
             path="/product/:id"
-            render={ (props) => <ProductDetails { ...props } /> }
+            render={
+              (props) => <ProductDetails addToCart={ this.addToCart } { ...props } />
+            }
           />
         </BrowserRouter>
       </div>

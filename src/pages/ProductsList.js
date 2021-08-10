@@ -40,7 +40,6 @@ class ProductsList extends React.Component {
     this.setState({ category });
     const { searching } = this.state;
     api.getProductsFromCategoryAndQuery(category, searching).then((response) => {
-      console.log(response);
       this.setState({
         doneSearching: true,
         products: response.results,
