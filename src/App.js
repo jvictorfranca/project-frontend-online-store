@@ -5,6 +5,7 @@ import './App.css';
 
 import ShoppingCart from './pages/ShoppingCart';
 import ProductsList from './pages/ProductsList';
+import ProductDetails from './pages/ProductDetails';
 
 class App extends React.Component {
   constructor(props) {
@@ -45,6 +46,10 @@ class App extends React.Component {
           <Route
             path="/cart"
             render={ () => <ShoppingCart addToCart={ this.addToCart } /> }
+          />
+          <Route
+            path="/product/:id"
+            render={ (props) => <ProductDetails { ...props } /> }
           />
         </BrowserRouter>
       </div>
