@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CartButton from '../Components/CartButton';
+import EvaluationForm from '../Components/EvaluationForm';
 
 // import * as api from '../services/api';
 
@@ -28,6 +29,7 @@ class ProductDetails extends React.Component {
           {`price: ${price}`}
         </p>
 
+        <EvaluationForm />
       </main>
     );
   }
