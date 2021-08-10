@@ -11,11 +11,11 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   let searchQuery = 'search?';
 
   if (categoryId) {
-    searchQuery += `category=$${categoryId || ''}`;
+    searchQuery += `category=${categoryId || ''}`;
   }
 
   if (query) {
-    searchQuery += `${categoryId ? '&' : ''}q=$${query || ''}`;
+    searchQuery += `${categoryId ? '&' : ''}q=${query || ''}`;
   }
 
   const response = await fetch(
