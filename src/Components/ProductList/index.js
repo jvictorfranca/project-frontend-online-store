@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ProductCard from './ProductCard';
+import ProductCard from '../ProductCard';
+
+import './styles.css';
 
 class ProductList extends React.Component {
   render() {
@@ -9,7 +11,7 @@ class ProductList extends React.Component {
       products.length === 0
         ? <p>Nenhum produto encontrado</p>
         : (
-          <section>
+          <section className="products-list">
             {products.map((product) => (<ProductCard
               product={ product }
               key={ product.id }

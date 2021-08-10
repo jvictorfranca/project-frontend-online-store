@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import './styles.css';
+
 class ProductCard extends React.Component {
   render() {
     const { product } = this.props;
     const { title, price, thumbnail, id } = product;
     return (
-      <section data-testid="product">
+      <section data-testid="product" className="product">
         <h1>{title}</h1>
         <img src={ thumbnail } alt="Product Thumbnail" />
         <p>{price}</p>
