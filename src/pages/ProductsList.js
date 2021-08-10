@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ProductList from '../Components/ProductList';
 import CartButton from '../Components/CartButton';
 import * as api from '../services/api';
@@ -10,6 +11,7 @@ class ProductsList extends React.Component {
       searching: '',
       category: '',
       products: [],
+      doneSearching: false,
     };
     this.handleQuerry = this.handleQuerry.bind(this);
     this.handleButton = this.handleButton.bind(this);
@@ -27,12 +29,15 @@ class ProductsList extends React.Component {
     const { searching, category } = this.state;
     const updated = await api.getProductsFromCategoryAndQuery(category, searching);
     this.setState({
-      products: updated.results });
+      products: updated.results,
+      doneSearching: true,
+    });
   }
 
   render() {
-    const { state } = this;
-    const { searching, category, products } = state;
+    const { state, props } = this;
+    const { searching, products, doneSearching } = state;
+    const { addToCart } = props;
 
     return (
       <main data-testid="home-initial-message">
@@ -51,12 +56,16 @@ class ProductsList extends React.Component {
           Click
         </button>
         <CartButton />
-        {searching === '' && category === ''
-          ? <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
-          : <ProductList products={ products } />}
+        {doneSearching
+          ? <ProductList addToCart={ addToCart } products={ products } />
+          : <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>}
       </main>
     );
   }
 }
+
+ProductsList.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+};
 
 export default ProductsList;
