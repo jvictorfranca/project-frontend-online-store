@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ProductList from '../Components/ProductList';
 import CartButton from '../Components/CartButton';
 import * as api from '../services/api';
@@ -48,9 +49,9 @@ class ProductsList extends React.Component {
   }
 
   render() {
-    const { state } = this;
+    const { state, props } = this;
     const { searching, products, doneSearching } = state;
-    console.log(products);
+    const { addToCart } = props;
 
     return (
       <main data-testid="home-initial-message">
@@ -70,7 +71,7 @@ class ProductsList extends React.Component {
         </button>
         <CartButton />
         {doneSearching
-          ? <ProductList products={ products } />
+          ? <ProductList addToCart={ addToCart } products={ products } />
           : <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>}
 
         <CategoryList callback={ this.categorySearch } />
@@ -78,5 +79,9 @@ class ProductsList extends React.Component {
     );
   }
 }
+
+ProductsList.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+};
 
 export default ProductsList;

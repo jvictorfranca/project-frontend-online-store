@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 
 import CartButton from '../Components/CartButton';
 
-// import * as api from '../services/api';
-
 class ProductDetails extends React.Component {
   render() {
     const { props } = this;
     const { state } = props.location;
     const { product } = state;
-    // console.log(product);
     const { id, title, thumbnail, price } = product;
     return (
       <main>

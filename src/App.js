@@ -5,23 +5,56 @@ import './App.css';
 
 import ShoppingCart from './pages/ShoppingCart';
 import ProductsList from './pages/ProductsList';
-//import CategoryList from './Components/CategoryList';
 import ProductDetails from './pages/ProductDetails';
 
-function App() {
-  return (
-    <div className="App">
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-      <BrowserRouter>
-        <Route exact path="/" component={ ProductsList } />
-        <Route path="/cart" component={ ShoppingCart } />
-        <Route
-          path="/product/:id"
-          render={ (props) => <ProductDetails { ...props } /> }
-        />
-      </BrowserRouter>
-    </div>
-  );
+    this.state = {
+      cart: [],
+    };
+  }
+
+  addToCart = (product) => {
+    const { cart: prevCart } = this.state;
+    const findIndexNotFoundNumber = -1;
+    const existsProduct = prevCart.findIndex(({ id }) => product.id === id);
+
+    if (existsProduct !== findIndexNotFoundNumber) {
+      prevCart[existsProduct].quant += 1;
+    } else {
+      prevCart.push({
+        ...product,
+        quant: 1,
+      });
+    }
+    this.setState({
+      cart: prevCart,
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Route
+            exact
+            path="/"
+            render={ () => <ProductsList addToCart={ this.addToCart } /> }
+          />
+          <Route
+            path="/cart"
+            render={ () => <ShoppingCart addToCart={ this.addToCart } /> }
+          />
+          <Route
+            path="/product/:id"
+            render={ (props) => <ProductDetails { ...props } /> }
+          />
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
 export default App;

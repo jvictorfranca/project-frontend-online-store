@@ -19,7 +19,6 @@ class CategoryList extends Component {
 
   onCallback(event) {
     const elemento = event.target.value;
-    console.log(elemento);
     const { callback } = this.props;
     callback(elemento);
   }
