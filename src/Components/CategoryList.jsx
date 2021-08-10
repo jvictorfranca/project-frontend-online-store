@@ -19,7 +19,6 @@ class CategoryList extends Component {
 
   onCallback(event) {
     const elemento = event.target.value;
-    console.log(elemento);
     const { callback } = this.props;
     callback(elemento);
   }
@@ -39,10 +38,11 @@ class CategoryList extends Component {
           { categorias
             .map((obj) => (
 
-              <li data-testid="category" key={ obj.id }>
+              <li key={ obj.id }>
 
                 <label htmlFor={ obj.name }>{obj.name}</label>
                 <input
+                  data-testid="category"
                   onClick={ this.onCallback }
                   name="categoria"
                   type="radio"

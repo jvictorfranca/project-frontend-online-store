@@ -27,7 +27,7 @@ ProductCard.propTypes = {
   addToCart: PropTypes.func.isRequired,
   product: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
     thumbnail: PropTypes.string.isRequired }).isRequired,
 
 };
