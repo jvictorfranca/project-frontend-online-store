@@ -17,12 +17,6 @@ class CategoryList extends Component {
     this.listaCategorias();
   }
 
-  // async handleRadio(name) {
-  //   const updated = await api.getProductsFromCategoryAndQuery(name, '');
-  //   console.log(name);
-  //   return <ProductList products={ name } />;
-  // }
-
   onCallback(event) {
     const elemento = event.target.value;
     console.log(elemento);
@@ -39,7 +33,6 @@ class CategoryList extends Component {
 
   render() {
     const { categorias } = this.state;
-    // const { setState } = this.props;
     return (
       <div>
         <ul>
