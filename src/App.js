@@ -5,7 +5,7 @@ import './App.css';
 
 import ShoppingCart from './pages/ShoppingCart';
 import ProductsList from './pages/ProductsList';
-import CategoryList from './Components/CategoryList';
+//import CategoryList from './Components/CategoryList';
 import ProductDetails from './pages/ProductDetails';
 
 function App() {
