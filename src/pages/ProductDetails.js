@@ -1,19 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import CartButton from '../Components/CartButton';
-import * as api from '../services/api';
+
+// import * as api from '../services/api';
 
 class ProductDetails extends React.Component {
-  componentDidMount() {
-    const { id } = this.props.location.state.product;
-    const test = api.getProductsFromCategoryAndQuery('LG K41s Dual Sim 32 Gb Preto 3 Gb Ram').then((result) => console.log(result));
-  }
-
   render() {
     const { props } = this;
     const { state } = props.location;
     const { product } = state;
-    console.log(product);
-    const { id, title, thumbnail, price, sold_quantity } = product;
+    // console.log(product);
+    const { id, title, thumbnail, price } = product;
     return (
       <main>
         <CartButton />
@@ -30,13 +28,23 @@ class ProductDetails extends React.Component {
           {`price: ${price}`}
         </p>
 
-        <p>
-          {`Sold: ${sold_quantity}`}
-        </p>
-
       </main>
     );
   }
 }
+
+ProductDetails.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      product: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
+        thumbnail: PropTypes.string.isRequired,
+      }),
+    }),
+  }).isRequired,
+
+};
 
 export default ProductDetails;

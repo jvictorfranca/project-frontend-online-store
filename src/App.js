@@ -15,7 +15,10 @@ function App() {
       <BrowserRouter>
         <Route exact path="/" component={ ProductsList } />
         <Route path="/cart" component={ ShoppingCart } />
-        <Route path="/product/:id" render={ (props) => <ProductDetails { ...props } /> } />
+        <Route
+          path="/product/:id"
+          render={ (props) => <ProductDetails { ...props } /> }
+        />
       </BrowserRouter>
     </div>
   );
