@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CartButton from '../Components/CartButton';
+import EvaluationForm from '../Components/EvaluationForm';
 
 class ProductDetails extends React.Component {
   render() {
@@ -25,6 +26,7 @@ class ProductDetails extends React.Component {
           {`price: ${price}`}
         </p>
 
+        <EvaluationForm />
       </main>
     );
   }
