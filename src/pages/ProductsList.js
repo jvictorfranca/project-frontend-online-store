@@ -11,6 +11,7 @@ class ProductsList extends React.Component {
       searching: '',
       category: '',
       products: [],
+      doneSearching: false,
     };
     this.handleQuerry = this.handleQuerry.bind(this);
     this.handleButton = this.handleButton.bind(this);
@@ -29,7 +30,9 @@ class ProductsList extends React.Component {
     const { searching, category } = this.state;
     const updated = await api.getProductsFromCategoryAndQuery(category, searching);
     this.setState({
-      products: updated.results });
+      products: updated.results,
+      doneSearching: true,
+    });
   }
 
   categorySearch(category) {
@@ -45,7 +48,8 @@ class ProductsList extends React.Component {
 
   render() {
     const { state } = this;
-    const { searching, category, products } = state;
+    const { searching, products, doneSearching } = state;
+    console.log(products);
 
     return (
       <main data-testid="home-initial-message">
