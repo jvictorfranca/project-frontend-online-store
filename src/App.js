@@ -5,8 +5,8 @@ import './App.css';
 
 import ShoppingCart from './pages/ShoppingCart';
 import ProductsList from './pages/ProductsList';
-//import CategoryList from './Components/CategoryList';
 import ProductDetails from './pages/ProductDetails';
+import FinishPurchase from './pages/FinishPurchase';
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           path="/product/:id"
           render={ (props) => <ProductDetails { ...props } /> }
         />
+        <Route path="/finish" component={ FinishPurchase } />
       </BrowserRouter>
     </div>
   );
