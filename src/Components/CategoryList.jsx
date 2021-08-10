@@ -9,6 +9,9 @@ class CategoryList extends Component {
     };
 
     this.listaCategorias = this.listaCategorias.bind(this);
+  }
+
+  componentDidMount() {
     this.listaCategorias();
   }
 
