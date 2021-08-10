@@ -2,6 +2,7 @@ import React from 'react';
 import ProductList from '../Components/ProductList';
 import CartButton from '../Components/CartButton';
 import * as api from '../services/api';
+import CategoryList from '../Components/CategoryList';
 
 class ProductsList extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class ProductsList extends React.Component {
     };
     this.handleQuerry = this.handleQuerry.bind(this);
     this.handleButton = this.handleButton.bind(this);
+    this.categorySearch = this.categorySearch.bind(this);
   }
 
   handleQuerry(event) {
@@ -28,6 +30,17 @@ class ProductsList extends React.Component {
     const updated = await api.getProductsFromCategoryAndQuery(category, searching);
     this.setState({
       products: updated.results });
+  }
+
+  categorySearch(category) {
+    this.setState({ category });
+    const { searching } = this.state;
+    api.getProductsFromCategoryAndQuery(category, searching).then((response) => {
+      console.log(response);
+      this.setState({
+        products: response.results,
+      });
+    });
   }
 
   render() {
@@ -54,6 +67,8 @@ class ProductsList extends React.Component {
         {searching === '' && category === ''
           ? <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
           : <ProductList products={ products } />}
+
+        <CategoryList callback={ this.categorySearch } />
       </main>
     );
   }
