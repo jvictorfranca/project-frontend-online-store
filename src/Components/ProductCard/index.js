@@ -8,7 +8,7 @@ import { FaCartPlus } from 'react-icons/fa';
 class ProductCard extends React.Component {
   render() {
     const { product, addToCart } = this.props;
-    const { title, price, thumbnail } = product;
+    const { id, title, price, thumbnail } = product;
     return (
       <section data-testid="product" className="product">
         <h1>{title}</h1>
