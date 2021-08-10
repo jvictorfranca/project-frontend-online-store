@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FaCartPlus } from 'react-icons/fa';
 
 import CartButton from '../Components/CartButton';
+import EvaluationForm from '../Components/EvaluationForm';
 
 class ProductDetails extends React.Component {
   render() {
@@ -32,6 +33,8 @@ class ProductDetails extends React.Component {
         >
           <FaCartPlus size="2em" />
         </button>
+
+        <EvaluationForm />
       </main>
     );
   }
