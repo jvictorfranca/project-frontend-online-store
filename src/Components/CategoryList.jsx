@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 class CategoryList extends Component {
@@ -9,10 +10,18 @@ class CategoryList extends Component {
     };
 
     this.listaCategorias = this.listaCategorias.bind(this);
+    this.onCallback = this.onCallback.bind(this);
   }
 
   componentDidMount() {
     this.listaCategorias();
+  }
+
+  onCallback(event) {
+    const elemento = event.target.value;
+    console.log(elemento);
+    const { callback } = this.props;
+    callback(elemento);
   }
 
   async listaCategorias() {
@@ -28,11 +37,28 @@ class CategoryList extends Component {
       <div>
         <ul>
           { categorias
-            .map((obj) => <li data-testid="category" key={ obj.id }>{obj.name}</li>)}
+            .map((obj) => (
+
+              <li data-testid="category" key={ obj.id }>
+
+                <label htmlFor={ obj.name }>{obj.name}</label>
+                <input
+                  onClick={ this.onCallback }
+                  name="categoria"
+                  type="radio"
+                  id={ obj.name }
+                  value={ obj.id }
+                />
+
+              </li>))}
         </ul>
       </div>
     );
   }
 }
+
+CategoryList.propTypes = {
+  callback: PropTypes.func.isRequired,
+};
 
 export default CategoryList;
