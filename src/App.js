@@ -11,7 +11,7 @@ import ProductDetails from './pages/ProductDetails';
 function App() {
   return (
     <div className="App">
-      <CategoryList />
+
       <BrowserRouter>
         <Route exact path="/" component={ ProductsList } />
         <Route path="/cart" component={ ShoppingCart } />
