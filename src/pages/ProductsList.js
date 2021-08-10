@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ProductList from '../Components/ProductList';
 import CartButton from '../Components/CartButton';
 import * as api from '../services/api';
+import CategoryList from '../Components/CategoryList';
 
 class ProductsList extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class ProductsList extends React.Component {
     };
     this.handleQuerry = this.handleQuerry.bind(this);
     this.handleButton = this.handleButton.bind(this);
+    this.categorySearch = this.categorySearch.bind(this);
   }
 
   handleQuerry(event) {
@@ -31,6 +33,18 @@ class ProductsList extends React.Component {
     this.setState({
       products: updated.results,
       doneSearching: true,
+    });
+  }
+
+  categorySearch(category) {
+    this.setState({ category });
+    const { searching } = this.state;
+    api.getProductsFromCategoryAndQuery(category, searching).then((response) => {
+      console.log(response);
+      this.setState({
+        doneSearching: true,
+        products: response.results,
+      });
     });
   }
 
@@ -59,6 +73,8 @@ class ProductsList extends React.Component {
         {doneSearching
           ? <ProductList addToCart={ addToCart } products={ products } />
           : <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>}
+
+        <CategoryList callback={ this.categorySearch } />
       </main>
     );
   }

@@ -5,7 +5,6 @@ import './App.css';
 
 import ShoppingCart from './pages/ShoppingCart';
 import ProductsList from './pages/ProductsList';
-import CategoryList from './Components/CategoryList';
 
 class App extends React.Component {
   constructor(props) {
@@ -37,7 +36,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <CategoryList />
         <BrowserRouter>
           <Route
             exact
