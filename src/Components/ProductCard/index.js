@@ -23,7 +23,7 @@ class ProductCard extends React.Component {
         <h1>{title}</h1>
         <img src={ thumbnail } alt="Product Thumbnail" />
         <p>{price}</p>
-        <p>{this.freeShipping(shipping)}</p>
+        {this.freeShipping(shipping)}
         <Link
           to={
             { pathname: `/product/${id}`,
@@ -51,8 +51,11 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
-    shipping: PropTypes.bool.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }).isRequired,
     thumbnail: PropTypes.string.isRequired }).isRequired,
+
 };
 
 export default ProductCard;
