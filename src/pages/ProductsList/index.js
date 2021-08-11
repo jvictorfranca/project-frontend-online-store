@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ProductList from '../Components/ProductList';
-import CartButton from '../Components/CartButton';
-import * as api from '../services/api';
-import CategoryList from '../Components/CategoryList';
+import ProductList from '../../Components/ProductList';
+import CartButton from '../../Components/CartButton';
+import * as api from '../../services/api';
+import CategoryList from '../../Components/CategoryList';
+
+import './styles.css';
 
 class ProductsList extends React.Component {
   constructor(props) {
@@ -53,27 +55,42 @@ class ProductsList extends React.Component {
     const { addToCart, quant } = props;
 
     return (
-      <main data-testid="home-initial-message">
-        <input
-          type="text"
-          onChange={ this.handleQuerry }
-          value={ searching }
-          name="searching"
-          data-testid="query-input"
-        />
-        <button
-          onClick={ this.handleButton }
-          type="button"
-          data-testid="query-button"
-        >
-          Search
-        </button>
-        <CartButton quant={ quant } />
-        {doneSearching
-          ? <ProductList addToCart={ addToCart } products={ products } />
-          : <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>}
+      <main data-testid="home-initial-message" className="main-container">
+        <section className="search-container">
+          <input
+            type="text"
+            onChange={ this.handleQuerry }
+            value={ searching }
+            name="searching"
+            data-testid="query-input"
+          />
+          <button
+            onClick={ this.handleButton }
+            type="button"
+            data-testid="query-button"
+          >
+            Search
+          </button>
+          <CartButton quant={ quant } />
+        </section>
+        <section className="products-category-container">
 
-        <CategoryList callback={ this.categorySearch } />
+          {doneSearching
+            ? <ProductList addToCart={ addToCart } products={ products } />
+            : (
+              <p
+                className="empty-search-text"
+              >
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </p>
+            )}
+
+          <aside className="category-container">
+            <CategoryList callback={ this.categorySearch } />
+          </aside>
+
+        </section>
+
       </main>
     );
   }
