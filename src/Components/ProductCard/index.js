@@ -6,14 +6,24 @@ import './styles.css';
 import { FaCartPlus } from 'react-icons/fa';
 
 class ProductCard extends React.Component {
+  freeShipping(shipping) {
+    const { free_shipping: freeShipping } = shipping;
+    console.log();
+    if (freeShipping === true) {
+      return <p data-testid="free-shipping">Frete Gratis </p>;
+    }
+    return <p />;
+  }
+
   render() {
     const { product, addToCart } = this.props;
-    const { id, title, price, thumbnail } = product;
+    const { id, title, price, thumbnail, shipping } = product;
     return (
       <section data-testid="product" className="product">
         <h1>{title}</h1>
         <img src={ thumbnail } alt="Product Thumbnail" />
         <p>{price}</p>
+        {this.freeShipping(shipping)}
         <Link
           to={
             { pathname: `/product/${id}`,
@@ -41,7 +51,11 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }).isRequired,
     thumbnail: PropTypes.string.isRequired }).isRequired,
+
 };
 
 export default ProductCard;
