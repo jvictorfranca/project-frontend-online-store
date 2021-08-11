@@ -45,6 +45,19 @@ export default class ShoppingCart extends React.Component {
             ]
             : <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
         }
+        <Link
+          data-testid="checkout-products"
+          to={
+            { pathname: '/finish',
+              state: {
+                products: cart,
+                sum: cartTotal,
+              } }
+          }
+        >
+          Finish  your purchase
+        </Link>
+
       </>
     );
   }
