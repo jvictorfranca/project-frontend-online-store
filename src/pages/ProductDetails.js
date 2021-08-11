@@ -6,11 +6,20 @@ import CartButton from '../Components/CartButton';
 import EvaluationForm from '../Components/EvaluationForm';
 
 class ProductDetails extends React.Component {
+  freeShipping(shipping) {
+    const { free_shipping: freeShipping } = shipping;
+    console.log();
+    if (freeShipping === true) {
+      return <p data-testid="free-shipping">Frete Gratis </p>;
+    }
+    return <p />;
+  }
+
   render() {
     const { props } = this;
     const { location: { state }, addToCart } = props;
     const { product } = state;
-    const { id, title, thumbnail, price } = product;
+    const { id, title, thumbnail, price, shipping } = product;
     return (
       <main>
         <CartButton />
@@ -26,6 +35,8 @@ class ProductDetails extends React.Component {
         <p>
           {`price: ${price}`}
         </p>
+
+        {this.freeShipping(shipping)}
         <button
           data-testid="product-detail-add-to-cart"
           type="button"
@@ -48,6 +59,9 @@ ProductDetails.propTypes = {
         price: PropTypes.number.isRequired,
         id: PropTypes.string.isRequired,
         thumbnail: PropTypes.string.isRequired,
+        shipping: PropTypes.shape({
+          free_shipping: PropTypes.bool.isRequired,
+        }).isRequired,
       }),
     }),
   }).isRequired,
