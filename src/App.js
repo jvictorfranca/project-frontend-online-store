@@ -19,6 +19,14 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.getStateFromLocalStorage();
+  }
+
+  componentDidUpdate() {
+    this.updateLocalStorage();
+  }
+
   addToCart = (product) => {
     const { cart: prevCart } = this.state;
     const findIndexNotFoundNumber = -1;
@@ -49,7 +57,7 @@ class App extends React.Component {
     this.setState({
       cart: newCart,
       total: this.cartTotal(newCart),
-      quant: this.cartQuantity(prevCart),
+      quant: this.cartQuantity(newCart),
     });
   }
 
@@ -88,7 +96,28 @@ class App extends React.Component {
     }).format(totalPrice);
   }
 
+  getStateFromLocalStorage = () => {
+    if (localStorage.shoppingCart) {
+      const { shoppingCart } = localStorage;
+      const shoppingCartObject = JSON.parse(shoppingCart);
+      const { cart, total, quant } = shoppingCartObject;
+      console.log(`na getstate : ${quant}`);
+      this.setState({
+        cart,
+        total,
+        quant,
+      });
+    }
+  }
+
   cartQuantity = (cart) => cart.reduce(((sum, product) => product.quant + sum), 0)
+
+  updateLocalStorage = () => {
+    const { state } = this;
+    console.log(`na update : ${state.quant}`);
+    const object = JSON.stringify(state);
+    localStorage.shoppingCart = object;
+  }
 
   render() {
     const { cart, total, quant } = this.state;
