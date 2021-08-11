@@ -24,7 +24,9 @@ class App extends React.Component {
     const existsProduct = prevCart.findIndex(({ id }) => product.id === id);
 
     if (existsProduct !== findIndexNotFoundNumber) {
-      prevCart[existsProduct].quant += 1;
+      if (prevCart[existsProduct].quant < prevCart[existsProduct].available_quantity) {
+        prevCart[existsProduct].quant += 1;
+      }
     } else {
       prevCart.push({
         ...product,
