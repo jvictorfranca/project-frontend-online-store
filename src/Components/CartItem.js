@@ -1,23 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FaCartPlus } from 'react-icons/fa';
+import { FaMinusCircle, FaPlusCircle, FaTimesCircle } from 'react-icons/fa';
 
 const CartItem = ({
   id,
   name,
   price,
   quant,
-  onClick,
+  onAddClick,
+  onSubClick,
+  onRemoveClick,
   ...rest
 }) => (
   <li id={ id } { ...rest }>
-    <span data-testid="shopping-cart-product-name">{name}</span>
-    <span data-testid="shopping-cart-product-quantity">{quant}</span>
     <button
       type="button"
-      onClick={ onClick }
+      onClick={ onRemoveClick }
     >
-      <FaCartPlus size="2em" />
+      <FaTimesCircle size="2em" />
+    </button>
+    <span data-testid="shopping-cart-product-name">{name}</span>
+    <button
+      data-testid="product-decrease-quantity"
+      type="button"
+      onClick={ onSubClick }
+    >
+      <FaMinusCircle size="2em" />
+    </button>
+    <span data-testid="shopping-cart-product-quantity">{quant}</span>
+    <button
+      data-testid="product-increase-quantity"
+      type="button"
+      onClick={ onAddClick }
+    >
+      <FaPlusCircle size="2em" />
     </button>
     <span>{price}</span>
   </li>
@@ -28,7 +44,9 @@ CartItem.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   quant: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onAddClick: PropTypes.func.isRequired,
+  onSubClick: PropTypes.func.isRequired,
+  onRemoveClick: PropTypes.func.isRequired,
 };
 
 export default CartItem;

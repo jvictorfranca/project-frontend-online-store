@@ -13,6 +13,7 @@ class App extends React.Component {
 
     this.state = {
       cart: [],
+      total: '',
     };
   }
 
@@ -29,13 +30,59 @@ class App extends React.Component {
         quant: 1,
       });
     }
+
     this.setState({
       cart: prevCart,
+      total: this.cartTotal(prevCart),
     });
   }
 
+  removeFromCart = (product) => {
+    const { cart: prevCart } = this.state;
+    const newCart = prevCart.filter(({ id }) => id !== product.id);
+
+    this.setState({
+      cart: newCart,
+      total: this.cartTotal(newCart),
+    });
+  }
+
+  subFromCart = (product) => {
+    const { cart: prevCart } = this.state;
+
+    if (product.quant <= 1) {
+      return this.removeFromCart(product);
+    }
+
+    const newCart = prevCart.map((prevProduct) => {
+      if (prevProduct.id === product.id) {
+        return {
+          ...prevProduct,
+          quant: prevProduct.quant - 1,
+        };
+      }
+
+      return prevProduct;
+    });
+
+    this.setState({
+      cart: newCart,
+      total: this.cartTotal(newCart),
+    });
+  }
+
+  cartTotal = (cart) => {
+    const totalPrice = cart
+      .reduce((total, { price, quant }) => total + (price * quant), 0);
+
+    return Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(totalPrice);
+  }
+
   render() {
-    const { cart } = this.state;
+    const { cart, total } = this.state;
 
     return (
       <div className="App">
@@ -47,7 +94,13 @@ class App extends React.Component {
           />
           <Route
             path="/cart"
-            render={ () => <ShoppingCart addToCart={ this.addToCart } cart={ cart } /> }
+            render={ () => (<ShoppingCart
+              cartTotal={ total }
+              addToCart={ this.addToCart }
+              subFromCart={ this.subFromCart }
+              removeFromCart={ this.removeFromCart }
+              cart={ cart }
+            />) }
           />
           <Route
             path="/product/:id"
