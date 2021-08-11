@@ -8,7 +8,6 @@ import EvaluationForm from '../Components/EvaluationForm';
 class ProductDetails extends React.Component {
   freeShipping(shipping) {
     const { free_shipping: freeShipping } = shipping;
-    console.log();
     if (freeShipping === true) {
       return <p data-testid="free-shipping">Frete Gratis </p>;
     }
