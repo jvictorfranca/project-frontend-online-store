@@ -8,12 +8,12 @@ import EvaluationForm from '../Components/EvaluationForm';
 class ProductDetails extends React.Component {
   render() {
     const { props } = this;
-    const { location: { state }, addToCart } = props;
+    const { location: { state }, addToCart, quant } = props;
     const { product } = state;
     const { id, title, thumbnail, price } = product;
     return (
       <main>
-        <CartButton />
+        <CartButton quant={ quant } />
         <p data-testid="product-detail-name">
           {`Name: ${title}`}
         </p>
@@ -52,6 +52,7 @@ ProductDetails.propTypes = {
     }),
   }).isRequired,
   addToCart: PropTypes.func.isRequired,
+  quant: PropTypes.number.isRequired,
 };
 
 export default ProductDetails;

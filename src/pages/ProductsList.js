@@ -50,7 +50,7 @@ class ProductsList extends React.Component {
   render() {
     const { state, props } = this;
     const { searching, products, doneSearching } = state;
-    const { addToCart } = props;
+    const { addToCart, quant } = props;
 
     return (
       <main data-testid="home-initial-message">
@@ -66,9 +66,9 @@ class ProductsList extends React.Component {
           type="button"
           data-testid="query-button"
         >
-          Click
+          Search
         </button>
-        <CartButton />
+        <CartButton quant={ quant } />
         {doneSearching
           ? <ProductList addToCart={ addToCart } products={ products } />
           : <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>}
@@ -81,6 +81,7 @@ class ProductsList extends React.Component {
 
 ProductsList.propTypes = {
   addToCart: PropTypes.func.isRequired,
+  quant: PropTypes.number.isRequired,
 };
 
 export default ProductsList;

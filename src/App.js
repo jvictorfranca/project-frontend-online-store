@@ -15,6 +15,7 @@ class App extends React.Component {
     this.state = {
       cart: [],
       total: '',
+      quant: 0,
     };
   }
 
@@ -35,6 +36,7 @@ class App extends React.Component {
     this.setState({
       cart: prevCart,
       total: this.cartTotal(prevCart),
+      quant: this.cartQuantity(prevCart),
     });
   }
 
@@ -45,6 +47,7 @@ class App extends React.Component {
     this.setState({
       cart: newCart,
       total: this.cartTotal(newCart),
+      quant: this.cartQuantity(prevCart),
     });
   }
 
@@ -69,6 +72,7 @@ class App extends React.Component {
     this.setState({
       cart: newCart,
       total: this.cartTotal(newCart),
+      quant: this.cartQuantity(prevCart),
     });
   }
 
@@ -82,8 +86,10 @@ class App extends React.Component {
     }).format(totalPrice);
   }
 
+  cartQuantity = (cart) => cart.reduce(((sum, product) => product.quant + sum), 0)
+
   render() {
-    const { cart, total } = this.state;
+    const { cart, total, quant } = this.state;
 
     return (
       <div className="App">
@@ -91,7 +97,7 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={ () => <ProductsList addToCart={ this.addToCart } /> }
+            render={ () => <ProductsList addToCart={ this.addToCart } quant={ quant } /> }
           />
           <Route
             path="/cart"
@@ -106,7 +112,11 @@ class App extends React.Component {
           <Route
             path="/product/:id"
             render={
-              (props) => <ProductDetails addToCart={ this.addToCart } { ...props } />
+              (props) => (<ProductDetails
+                addToCart={ this.addToCart }
+                { ...props }
+                quant={ quant }
+              />)
             }
           />
           <Route path="/finish" component={ FinishPurchase } />
