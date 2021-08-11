@@ -29,10 +29,7 @@ export default class ShoppingCart extends React.Component {
               ...cart.map((product) => (
                 <CartItem
                   key={ product.id }
-                  id={ product.id }
-                  name={ product.title }
-                  price={ product.price }
-                  quant={ product.quant }
+                  product={ product }
                   onAddClick={ () => addToCart(product) }
                   onSubClick={ () => subFromCart(product) }
                   onRemoveClick={ () => removeFromCart(product) }
@@ -42,22 +39,22 @@ export default class ShoppingCart extends React.Component {
                 Preço Total:
                 { cartTotal }
               </h3>,
+              <Link
+                key="checkout"
+                data-testid="checkout-products"
+                to={
+                  { pathname: '/finish',
+                    state: {
+                      products: cart,
+                      sum: cartTotal,
+                    } }
+                }
+              >
+                Finish  your purchase
+              </Link>,
             ]
             : <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
         }
-        <Link
-          data-testid="checkout-products"
-          to={
-            { pathname: '/finish',
-              state: {
-                products: cart,
-                sum: cartTotal,
-              } }
-          }
-        >
-          Finish  your purchase
-        </Link>
-
       </>
     );
   }
