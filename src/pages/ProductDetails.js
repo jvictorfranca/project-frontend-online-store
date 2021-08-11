@@ -2,15 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CartButton from '../Components/CartButton';
-
-// import * as api from '../services/api';
+import EvaluationForm from '../Components/EvaluationForm';
 
 class ProductDetails extends React.Component {
   render() {
     const { props } = this;
     const { state } = props.location;
     const { product } = state;
-    // console.log(product);
     const { id, title, thumbnail, price } = product;
     return (
       <main>
@@ -28,6 +26,7 @@ class ProductDetails extends React.Component {
           {`price: ${price}`}
         </p>
 
+        <EvaluationForm />
       </main>
     );
   }

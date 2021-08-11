@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
+import { FaCartPlus } from 'react-icons/fa';
 
 class ProductCard extends React.Component {
   render() {
-    const { product } = this.props;
-    const { title, price, thumbnail, id } = product;
+    const { product, addToCart } = this.props;
+    const { id, title, price, thumbnail } = product;
     return (
       <section data-testid="product" className="product">
         <h1>{title}</h1>
@@ -22,19 +23,25 @@ class ProductCard extends React.Component {
         >
           More Info
         </Link>
-
+        <button
+          data-testid="product-add-to-cart"
+          type="button"
+          onClick={ () => addToCart(product) }
+        >
+          <FaCartPlus size="2em" />
+        </button>
       </section>
     );
   }
 }
 
 ProductCard.propTypes = {
+  addToCart: PropTypes.func.isRequired,
   product: PropTypes.shape({
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired }).isRequired,
-
 };
 
 export default ProductCard;
