@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ProductCheckout extends React.Component {
   render() {
     const { product } = this.props;
-    const { name, quant, price } = product;
+    const { title, quant, price } = product;
     return (
       <li>
-        <p>{name}</p>
+        <p>{title}</p>
         <p>
           x
           {quant}
@@ -21,5 +22,13 @@ class ProductCheckout extends React.Component {
     );
   }
 }
+
+ProductCheckout.propTypes = {
+  product: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    quant: PropTypes.string.isRequired }).isRequired,
+
+};
 
 export default ProductCheckout;

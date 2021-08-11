@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ProductCheckout from '../Components/ProductCheckout';
 
 class FinishPurchase extends React.Component {
@@ -11,7 +12,10 @@ class FinishPurchase extends React.Component {
     return (
       <main>
         <ul>
-          {products.map((product) => <ProductCheckout product={ product } />)}
+          {products.map((product) => (<ProductCheckout
+            product={ product }
+            key={ product.id }
+          />))}
         </ul>
         <form>
           <label htmlFor="name">
@@ -57,5 +61,21 @@ class FinishPurchase extends React.Component {
     );
   }
 }
+
+FinishPurchase.propTypes = {
+  product: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    quant: PropTypes.string.isRequired }).isRequired,
+
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      sum: PropTypes.number.isRequired,
+      products: PropTypes.arrayOf(PropTypes.object),
+
+    }).isRequired,
+  }).isRequired,
+
+};
 
 export default FinishPurchase;
