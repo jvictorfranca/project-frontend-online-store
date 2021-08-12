@@ -15,7 +15,16 @@ class App extends React.Component {
     this.state = {
       cart: [],
       total: '',
+      quant: 0,
     };
+  }
+
+  componentDidMount() {
+    this.getStateFromLocalStorage();
+  }
+
+  componentDidUpdate() {
+    this.updateLocalStorage();
   }
 
   addToCart = (product) => {
@@ -37,7 +46,9 @@ class App extends React.Component {
     this.setState({
       cart: prevCart,
       total: this.cartTotal(prevCart),
+      quant: this.cartQuantity(prevCart),
     });
+    this.animateButton();
   }
 
   removeFromCart = (product) => {
@@ -47,6 +58,7 @@ class App extends React.Component {
     this.setState({
       cart: newCart,
       total: this.cartTotal(newCart),
+      quant: this.cartQuantity(newCart),
     });
   }
 
@@ -71,6 +83,7 @@ class App extends React.Component {
     this.setState({
       cart: newCart,
       total: this.cartTotal(newCart),
+      quant: this.cartQuantity(prevCart),
     });
   }
 
@@ -84,8 +97,41 @@ class App extends React.Component {
     }).format(totalPrice);
   }
 
+  getStateFromLocalStorage = () => {
+    if (localStorage.shoppingCart) {
+      const { shoppingCart } = localStorage;
+      const shoppingCartObject = JSON.parse(shoppingCart);
+      const { cart, total, quant } = shoppingCartObject;
+      this.setState({
+        cart,
+        total,
+        quant,
+      });
+    }
+  }
+
+  cartQuantity = (cart) => cart.reduce(((sum, product) => product.quant + sum), 0)
+
+  updateLocalStorage = () => {
+    const { state } = this;
+    const object = JSON.stringify(state);
+    localStorage.shoppingCart = object;
+  }
+
+  animateButton() {
+    const oi = document.getElementsByClassName('link-cart-icon');
+
+    if (!oi[0].classList.contains('animated')) {
+      oi[0].classList.add('animated');
+      const ONEANDAHALF_SECONDS = 1500;
+      setTimeout(() => {
+        oi[0].classList.remove('animated');
+      }, ONEANDAHALF_SECONDS);
+    }
+  }
+
   render() {
-    const { cart, total } = this.state;
+    const { cart, total, quant } = this.state;
 
     return (
       <div className="App">
@@ -93,7 +139,11 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={ () => <ProductsList addToCart={ this.addToCart } /> }
+            render={ () => (<ProductsList
+              addToCart={ this.addToCart }
+              quant={ quant }
+              cart={ cart }
+            />) }
           />
           <Route
             path="/cart"
@@ -115,6 +165,7 @@ class App extends React.Component {
                 cart={ cart }
                 cartTotal={ total }
                 { ...props }
+                quant={ quant }
               />)
             }
           />

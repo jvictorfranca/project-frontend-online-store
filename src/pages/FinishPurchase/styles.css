@@ -1,0 +1,45 @@
+th {
+  text-align: center;
+}
+
+table {
+  border: solid black 1px;
+  font-size: 1.5vh;
+  margin: 0 2vh;
+}
+
+.verify-data {
+  padding-left: 5vh;
+  text-align: left;
+}
+
+form {
+  border: solid black 1px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 90%;
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  padding: 1vh 5vh;
+  text-align: left;
+  width: 80%;
+}
+
+.total {
+  font-size: 3vh;
+  font-weight: 700;
+  margin: 5vh;
+  text-align: left;
+}
+
+@media screen and ( min-width : 800px ) {
+
+  table {
+    font-size: 2vh;
+  }
+
+}

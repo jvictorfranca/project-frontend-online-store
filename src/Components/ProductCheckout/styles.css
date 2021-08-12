@@ -1,0 +1,12 @@
+.product-checkout-container {
+  text-align: center;
+}
+
+.product-title {
+  text-align: left;
+}
+
+.product-checkout-container td {
+  padding: 3vh 5vh;
+}
+

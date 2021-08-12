@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FaCartPlus } from 'react-icons/fa';
 
 import DetailsItem from '../Components/DetailsItem/index';
-import CartButton from '../Components/CartButton';
+import CartButton from '../Components/CartButton/index';
 import EvaluationForm from '../Components/EvaluationForm';
 
 import './ProductDetailsStyle.css';
@@ -19,7 +19,7 @@ class ProductDetails extends React.Component {
 
   render() {
     const { props } = this;
-    const { location: { state }, addToCart, subFromCart, removeFromCart } = props;
+    const { location: { state }, addToCart, quant, subFromCart, removeFromCart } = props;
     const { product } = state;
     const { id, title, thumbnail, price, shipping, condition } = product;
     const marca = title;
@@ -29,21 +29,21 @@ class ProductDetails extends React.Component {
 
     return (
       <main>
-        <div className="header-box">
-          <CartButton />
-        </div>
-        <div className="container-title">
-          <p data-testid="product-detail-name" className="title-product">
-            {`Name: ${title}`}
-          </p>
+        <CartButton quant={ quant } />
+        <p data-testid="product-detail-name">
+          {`Name: ${title}`}
+        </p>
+        <p>
+          {`ID: ${id}`}
+        </p>
 
-          <p className="title-product hiden">
-            {`ID: ${id}`}
-          </p>
-          <p className="title-product">
-            {`Preço: $${price}`}
-          </p>
-        </div>
+        <p className="title-product hiden">
+          {`ID: ${id}`}
+        </p>
+        <p className="title-product">
+          {`Preço: $${price}`}
+        </p>
+
         <div className="container-img">
           <img src={ thumbnail } alt="Thumbnail" className="img-cart" />
           <div className="details">
@@ -67,8 +67,9 @@ class ProductDetails extends React.Component {
           </h2>
           <h3>
             Preço do carrinho:
-            {' '}
-            { cartTotal }
+            { cartTotal } <br></br>
+            Quantidade: 
+            {quant}
           </h3>
           <div className="bnts-cart">
             <DetailsItem
@@ -104,9 +105,10 @@ ProductDetails.propTypes = {
     }),
   }).isRequired,
   addToCart: PropTypes.func.isRequired,
-  cartTotal: PropTypes.string.isRequired,
+  quant: PropTypes.number.isRequired,
   subFromCart: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired,
+  cartTotal: PropTypes.string.isRequired,
 };
 
 export default ProductDetails;
