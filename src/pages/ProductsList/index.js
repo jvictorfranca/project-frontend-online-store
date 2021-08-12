@@ -52,7 +52,7 @@ class ProductsList extends React.Component {
   render() {
     const { state, props } = this;
     const { searching, products, doneSearching } = state;
-    const { addToCart, quant } = props;
+    const { addToCart, quant, cart } = props;
 
     return (
       <main data-testid="home-initial-message" className="main-container">
@@ -76,7 +76,7 @@ class ProductsList extends React.Component {
         <section className="products-category-container">
 
           {doneSearching
-            ? <ProductList addToCart={ addToCart } products={ products } />
+            ? <ProductList addToCart={ addToCart } products={ products } cart={ cart } />
             : (
               <p
                 className="empty-search-text"
@@ -99,6 +99,7 @@ class ProductsList extends React.Component {
 ProductsList.propTypes = {
   addToCart: PropTypes.func.isRequired,
   quant: PropTypes.number.isRequired,
+  cart: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductsList;

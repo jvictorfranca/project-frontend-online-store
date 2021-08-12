@@ -16,14 +16,19 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    const { product, addToCart } = this.props;
+    const { product, addToCart, cart } = this.props;
     const { id, title, price, thumbnail, shipping } = product;
     const formattedPrice = Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     }).format(price);
+    const cartNames = cart.map((cartProduct) => cartProduct.title);
+    console.log(cartNames.includes(product.title));
     return (
-      <section data-testid="product" className="product">
+      <section
+        data-testid="product"
+        className={ `product ${cartNames.includes(product.title) ? 'on-cart' : ''}` }
+      >
         <h1>{title}</h1>
         <img src={ thumbnail } alt="Product Thumbnail" />
         <p>{formattedPrice}</p>
@@ -67,6 +72,7 @@ ProductCard.propTypes = {
       free_shipping: PropTypes.bool.isRequired,
     }).isRequired,
     thumbnail: PropTypes.string.isRequired }).isRequired,
+  cart: PropTypes.arrayOf(PropTypes.object).isRequired,
 
 };
 
