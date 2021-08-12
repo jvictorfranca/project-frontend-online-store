@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as api from '../services/api';
+import * as api from '../../services/api';
+
+import './styles.css';
 
 class CategoryList extends Component {
   constructor(props) {
@@ -34,11 +36,11 @@ class CategoryList extends Component {
     const { categorias } = this.state;
     return (
       <div>
-        <ul>
+        <ul className="category-list-container">
           { categorias
             .map((obj) => (
 
-              <li key={ obj.id }>
+              <li key={ obj.id } className="category-list-item">
 
                 <label htmlFor={ obj.name }>{obj.name}</label>
                 <input
