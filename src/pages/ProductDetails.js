@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FaCartPlus } from 'react-icons/fa';
 
 import DetailsItem from '../Components/DetailsItem/index';
-import CartButton from '../Components/CartButton/index';
+import CartButton from '../Components/CartButton';
 import EvaluationForm from '../Components/EvaluationForm';
 
 import './ProductDetailsStyle.css';
