@@ -159,7 +159,11 @@ class App extends React.Component {
             path="/product/:id"
             render={
               (props) => (<ProductDetails
+                removeFromCart={ this.removeFromCart }
+                subFromCart={ this.subFromCart }
                 addToCart={ this.addToCart }
+                cart={ cart }
+                cartTotal={ total }
                 { ...props }
                 quant={ quant }
               />)

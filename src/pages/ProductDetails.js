@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaCartPlus } from 'react-icons/fa';
 
+import DetailsItem from '../Components/DetailsItem';
 import CartButton from '../Components/CartButton';
 import EvaluationForm from '../Components/EvaluationForm';
+
+import './ProductDetailsStyle.css';
 
 class ProductDetails extends React.Component {
   freeShipping(shipping) {
@@ -16,9 +19,14 @@ class ProductDetails extends React.Component {
 
   render() {
     const { props } = this;
-    const { location: { state }, addToCart, quant } = props;
+    const { location: { state }, addToCart, quant, subFromCart, removeFromCart } = props;
     const { product } = state;
-    const { id, title, thumbnail, price, shipping } = product;
+    const { id, title, thumbnail, price, shipping, condition } = product;
+    const marca = title;
+    const { cartTotal } = this.props;
+    const condicao = condition;
+    console.log(product);
+
     return (
       <main>
         <CartButton quant={ quant } />
@@ -29,22 +37,54 @@ class ProductDetails extends React.Component {
           {`ID: ${id}`}
         </p>
 
-        <img src={ thumbnail } alt="Thumbnail" />
-
-        <p>
-          {`price: ${price}`}
+        <p className="title-product hiden">
+          {`ID: ${id}`}
+        </p>
+        <p className="title-product">
+          {`Preço: $${price}`}
         </p>
 
+        <div className="container-img">
+          <img src={ thumbnail } alt="Thumbnail" className="img-cart" />
+          <div className="details">
+            <h2>Detalhes</h2>
+            <p>
+              Marca:
+              {marca}
+            </p>
+            <p>
+              Condição:
+              {condicao}
+            </p>
+          </div>
+        </div>
+
         {this.freeShipping(shipping)}
-        <button
-          data-testid="product-detail-add-to-cart"
-          type="button"
-          onClick={ () => addToCart(product) }
-        >
-          <FaCartPlus size="2em" />
-        </button>
+        <div className="section-carrinho">
+          <h2>
+            Carrinho
+            <FaCartPlus size="2em" />
+          </h2>
+          <h3>
+            Preço do carrinho:
+            { cartTotal }
+            <br />
+            Quantidade:
+            {quant}
+          </h3>
+          <div className="bnts-cart">
+            <DetailsItem
+              key={ product.id }
+              product={ product }
+              onAddClick={ () => addToCart(product) }
+              onSubClick={ () => subFromCart(product) }
+              onRemoveClick={ () => removeFromCart(product) }
+            />
+          </div>
+        </div>
 
         <EvaluationForm />
+
       </main>
     );
   }
@@ -56,6 +96,7 @@ ProductDetails.propTypes = {
       product: PropTypes.shape({
         title: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
+        condition: PropTypes.string.isRequired,
         id: PropTypes.string.isRequired,
         thumbnail: PropTypes.string.isRequired,
         shipping: PropTypes.shape({
@@ -66,6 +107,9 @@ ProductDetails.propTypes = {
   }).isRequired,
   addToCart: PropTypes.func.isRequired,
   quant: PropTypes.number.isRequired,
+  subFromCart: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+  cartTotal: PropTypes.string.isRequired,
 };
 
 export default ProductDetails;

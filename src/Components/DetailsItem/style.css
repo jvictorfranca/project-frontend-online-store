@@ -1,0 +1,19 @@
+button {
+  height: 120px;
+  width: 120px;
+}
+
+.bnts-cart {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  list-style: none;
+}
+
+.bnts-cart button {
+  display: inline;
+  font-size: 12pt;
+  font-weight: 900;
+  position: relative;
+  text-align: center;
+}

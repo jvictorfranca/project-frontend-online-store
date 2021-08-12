@@ -1,1 +1,45 @@
-/* css */
+/* css Component EvaluatorForm */
+.form-container {
+  border: 3px black solid;
+  margin: 50px;
+  padding: 20px;
+  position: relative;
+  text-align: left;
+}
+
+.text-coments {
+  font-size: 15pt;
+  max-height: 300px;
+  max-width: 300px;
+  min-height: 100px;
+  min-width: 100px;
+  position: relative;
+}
+
+.bnt-sub {
+  margin-left: 0;
+  width: 200px;
+}
+
+.bnt-text {
+  font-size: 12pt;
+  margin-left: 20px;
+}
+
+@media ( max-width : 600px ) {
+
+
+  .text-coments {
+    font-size: 15pt;
+    max-height: 110px;
+    max-width: 150px;
+    min-height: 110px;
+    min-width: 110px;
+    position: relative;
+  }
+
+  .bnt-sub {
+    margin-left: 0;
+    width: 100px;
+  }
+}

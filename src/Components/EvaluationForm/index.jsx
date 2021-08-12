@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StarRatingComponent from 'react-star-rating-component';
+import './style.css';
 
 class EvaluationForm extends Component {
   constructor(props) {
@@ -30,22 +31,28 @@ class EvaluationForm extends Component {
     return (
       <form onSubmit={ this.formAceppt }>
         <h3>Avaliação</h3>
-        <div>
+        <div className="form-container">
           <label htmlFor="comment">
-
-            <textarea type="text" id="comment" data-testid="product-detail-evaluation" />
+            <p>Comentario</p>
+            <textarea
+              placeholder="Mensagem (opcional)"
+              className="text-coments"
+              type="text"
+              id="comment"
+              data-testid="product-detail-evaluation"
+            />
 
           </label>
           <div className="starCamp">
             <p>Nota</p>
             <StarRatingComponent
               name="rate1"
-              starCount={ 10 }
+              starCount={ 5 }
               value={ rating }
               onStarClick={ this.onStarClick }
             />
           </div>
-          <button type="submit">Enviar</button>
+          <button className="bnt-sub" type="submit">Enviar</button>
         </div>
       </form>
     );
