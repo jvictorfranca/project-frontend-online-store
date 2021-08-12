@@ -87,6 +87,7 @@ class ProductsList extends React.Component {
             id="sorted"
             value={ sorted }
             onChange={ this.handleQuerry }
+            className="sorted-select"
           >
             <option value="">Select by price</option>
             <option value="ascending">Ascending price</option>
