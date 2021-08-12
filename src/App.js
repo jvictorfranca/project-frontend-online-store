@@ -27,6 +27,17 @@ class App extends React.Component {
     this.updateLocalStorage();
   }
 
+  animateButton(){
+    let oi = document.getElementsByClassName('link-cart-icon')
+    console.log(oi[0])
+    oi[0].classList.add('animated')
+    let ONEANDAHALF_SECONDS = 1500
+    setTimeout(()=>{
+      oi[0].classList.remove('animated')
+    }, ONEANDAHALF_SECONDS)
+   
+  }
+
   addToCart = (product) => {
     const { cart: prevCart } = this.state;
     const findIndexNotFoundNumber = -1;
@@ -48,6 +59,7 @@ class App extends React.Component {
       total: this.cartTotal(prevCart),
       quant: this.cartQuantity(prevCart),
     });
+    this.animateButton()
   }
 
   removeFromCart = (product) => {
@@ -101,7 +113,6 @@ class App extends React.Component {
       const { shoppingCart } = localStorage;
       const shoppingCartObject = JSON.parse(shoppingCart);
       const { cart, total, quant } = shoppingCartObject;
-      console.log(`na getstate : ${quant}`);
       this.setState({
         cart,
         total,
@@ -114,7 +125,6 @@ class App extends React.Component {
 
   updateLocalStorage = () => {
     const { state } = this;
-    console.log(`na update : ${state.quant}`);
     const object = JSON.stringify(state);
     localStorage.shoppingCart = object;
   }
