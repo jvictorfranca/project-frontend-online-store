@@ -27,7 +27,7 @@ ProductCheckout.propTypes = {
   product: PropTypes.shape({
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    quant: PropTypes.string.isRequired }).isRequired,
+    quant: PropTypes.number.isRequired }).isRequired,
 
 };
 

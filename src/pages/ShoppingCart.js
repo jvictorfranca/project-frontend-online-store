@@ -23,38 +23,40 @@ export default class ShoppingCart extends React.Component {
           </span>
           <h1>Carrinho de Compras</h1>
         </div>
-        {
-          cart.length
-            ? [
-              ...cart.map((product) => (
-                <CartItem
-                  key={ product.id }
-                  product={ product }
-                  onAddClick={ () => addToCart(product) }
-                  onSubClick={ () => subFromCart(product) }
-                  onRemoveClick={ () => removeFromCart(product) }
-                />
-              )),
-              <h3 key="totalPrice">
-                Preço Total:
-                { cartTotal }
-              </h3>,
-              <Link
-                key="checkout"
-                data-testid="checkout-products"
-                to={
-                  { pathname: '/finish',
-                    state: {
-                      products: cart,
-                      sum: cartTotal,
-                    } }
-                }
-              >
-                Finish  your purchase
-              </Link>,
-            ]
-            : <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
-        }
+        <div style={ { listStyle: 'none' } }>
+          {
+            cart.length
+              ? [
+                ...cart.map((product) => (
+                  <CartItem
+                    key={ product.id }
+                    product={ product }
+                    onAddClick={ () => addToCart(product) }
+                    onSubClick={ () => subFromCart(product) }
+                    onRemoveClick={ () => removeFromCart(product) }
+                  />
+                )),
+                <h3 key="totalPrice">
+                  Preço Total:
+                  { cartTotal }
+                </h3>,
+                <Link
+                  key="checkout"
+                  data-testid="checkout-products"
+                  to={
+                    { pathname: '/finish',
+                      state: {
+                        products: cart,
+                        sum: cartTotal,
+                      } }
+                  }
+                >
+                  Finish  your purchase
+                </Link>,
+              ]
+              : <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
+          }
+        </div>
       </>
     );
   }
