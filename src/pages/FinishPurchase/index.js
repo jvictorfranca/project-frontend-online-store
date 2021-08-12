@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ProductCheckout from '../Components/ProductCheckout';
+import ProductCheckout from '../../Components/ProductCheckout';
+
+import './styles.css';
 
 class FinishPurchase extends React.Component {
   constructor(props) {
@@ -54,13 +56,26 @@ class FinishPurchase extends React.Component {
 
     return (
       <main>
-        <ul>
+        <h2 className="verify-data"> Verify your purchase </h2>
+        <table>
+          <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Total</th>
+          </tr>
           {products.map((product) => (<ProductCheckout
             product={ product }
             key={ product.id }
           />))}
-        </ul>
+        </table>
+        <p className="total">
+          Total price:
+          {' '}
+          {sum}
+        </p>
         <form>
+          <h2 className="verify-data"> Buyer info: </h2>
           <label htmlFor="name">
             Name:
             {' '}
@@ -139,9 +154,6 @@ class FinishPurchase extends React.Component {
             />
           </label>
         </form>
-        Total price:
-        {' '}
-        {sum}
 
         <button onClick={ this.clickFinish } type="button"> Finish </button>
       </main>

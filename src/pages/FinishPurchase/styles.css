@@ -1,0 +1,34 @@
+th {
+  text-align: center;
+}
+
+table {
+  border: solid black 1px;
+  margin-left: 2vh;
+}
+
+.verify-data {
+  padding-left: 5vh;
+  text-align: left;
+}
+
+form {
+  border: solid black 1px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 90%;
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  padding: 1vh 5vh;
+  text-align: left;
+  width: 80%;
+}
+
+.total {
+  margin: 5vh;
+  text-align: left;
+}
