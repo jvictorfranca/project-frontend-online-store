@@ -27,21 +27,6 @@ class App extends React.Component {
     this.updateLocalStorage();
   }
 
-  animateButton(){
-    let oi = document.getElementsByClassName('link-cart-icon')
-
-    if (!oi[0].classList.contains('animated'))
-    {
-      oi[0].classList.add('animated')
-      let ONEANDAHALF_SECONDS = 1500
-      setTimeout(()=>{
-        oi[0].classList.remove('animated')
-      }, ONEANDAHALF_SECONDS)
-     
-    }
-   
-  }
-
   addToCart = (product) => {
     const { cart: prevCart } = this.state;
     const findIndexNotFoundNumber = -1;
@@ -63,7 +48,7 @@ class App extends React.Component {
       total: this.cartTotal(prevCart),
       quant: this.cartQuantity(prevCart),
     });
-    this.animateButton()
+    this.animateButton();
   }
 
   removeFromCart = (product) => {
@@ -133,6 +118,18 @@ class App extends React.Component {
     localStorage.shoppingCart = object;
   }
 
+  animateButton() {
+    const oi = document.getElementsByClassName('link-cart-icon');
+
+    if (!oi[0].classList.contains('animated')) {
+      oi[0].classList.add('animated');
+      const ONEANDAHALF_SECONDS = 1500;
+      setTimeout(() => {
+        oi[0].classList.remove('animated');
+      }, ONEANDAHALF_SECONDS);
+    }
+  }
+
   render() {
     const { cart, total, quant } = this.state;
 
@@ -142,7 +139,11 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={ () => <ProductsList addToCart={ this.addToCart } quant={ quant } cart={cart} /> }
+            render={ () => (<ProductsList
+              addToCart={ this.addToCart }
+              quant={ quant }
+              cart={ cart }
+            />) }
           />
           <Route
             path="/cart"
