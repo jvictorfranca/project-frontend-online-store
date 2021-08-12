@@ -29,12 +29,16 @@ class App extends React.Component {
 
   animateButton(){
     let oi = document.getElementsByClassName('link-cart-icon')
-    console.log(oi[0])
-    oi[0].classList.add('animated')
-    let ONEANDAHALF_SECONDS = 1500
-    setTimeout(()=>{
-      oi[0].classList.remove('animated')
-    }, ONEANDAHALF_SECONDS)
+
+    if (!oi[0].classList.contains('animated'))
+    {
+      oi[0].classList.add('animated')
+      let ONEANDAHALF_SECONDS = 1500
+      setTimeout(()=>{
+        oi[0].classList.remove('animated')
+      }, ONEANDAHALF_SECONDS)
+     
+    }
    
   }
 
