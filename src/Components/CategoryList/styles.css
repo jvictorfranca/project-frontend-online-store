@@ -10,6 +10,7 @@
   background-color: orange;
   display: flex;
   flex-direction: row-reverse;
+  font-size: 1.5vh;
   justify-content: flex-end;
   list-style: none;
   padding-left: 10px;
@@ -18,4 +19,11 @@
   text-align: left;
 
 
+}
+
+@media screen and ( min-width : 800px ) {
+
+  .category-list-item {
+    font-size: 2vh;
+  }
 }

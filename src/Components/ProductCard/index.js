@@ -18,28 +18,40 @@ class ProductCard extends React.Component {
   render() {
     const { product, addToCart } = this.props;
     const { id, title, price, thumbnail, shipping } = product;
+    const formattedPrice = Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(price);
     return (
       <section data-testid="product" className="product">
         <h1>{title}</h1>
         <img src={ thumbnail } alt="Product Thumbnail" />
-        <p>{price}</p>
+        <p>{formattedPrice}</p>
         {this.freeShipping(shipping)}
-        <Link
-          to={
-            { pathname: `/product/${id}`,
-              state: { product } }
-          }
-          data-testid="product-detail-link"
-        >
-          More Info
-        </Link>
-        <button
-          data-testid="product-add-to-cart"
-          type="button"
-          onClick={ () => addToCart(product) }
-        >
-          <FaCartPlus size="2em" />
-        </button>
+
+        <div className="info-cart-container">
+
+          <Link
+            to={
+              { pathname: `/product/${id}`,
+                state: { product } }
+            }
+            data-testid="product-detail-link"
+          >
+            More Info
+          </Link>
+          <button
+            className="addcart-button"
+            data-testid="product-add-to-cart"
+            type="button"
+            onClick={ () => addToCart(product) }
+          >
+            Add to cart
+            <FaCartPlus size="2em" className="cart-icon" />
+          </button>
+
+        </div>
+
       </section>
     );
   }

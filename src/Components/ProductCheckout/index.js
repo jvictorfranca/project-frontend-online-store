@@ -7,6 +7,15 @@ class ProductCheckout extends React.Component {
   render() {
     const { product } = this.props;
     const { title, quant, price } = product;
+    const total = price * quant;
+    const formattedPrice = Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(price);
+    const formattedTotal = Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(total);
     return (
       <tr className="product-checkout-container">
         <td className="product-title">{title}</td>
@@ -14,9 +23,9 @@ class ProductCheckout extends React.Component {
           x
           {quant}
         </td>
-        <td>{price}</td>
+        <td>{formattedPrice}</td>
         <td>
-          {price * quant}
+          {formattedTotal}
         </td>
       </tr>
     );

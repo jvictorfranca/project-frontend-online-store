@@ -4,7 +4,8 @@ th {
 
 table {
   border: solid black 1px;
-  margin-left: 2vh;
+  font-size: 1.5vh;
+  margin: 0 2vh;
 }
 
 .verify-data {
@@ -29,6 +30,16 @@ form label {
 }
 
 .total {
+  font-size: 3vh;
+  font-weight: 700;
   margin: 5vh;
   text-align: left;
+}
+
+@media screen and ( min-width : 800px ) {
+
+  table {
+    font-size: 2vh;
+  }
+
 }
