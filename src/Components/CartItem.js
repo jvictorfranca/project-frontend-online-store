@@ -20,7 +20,7 @@ const CartItem = ({
       type="button"
       onClick={ onRemoveClick }
     >
-      <FaTimesCircle size="2em" />
+      <FaTimesCircle size="2em" className="link-cart-icon" />
     </button>
     <span data-testid="shopping-cart-product-name">{title}</span>
     <button

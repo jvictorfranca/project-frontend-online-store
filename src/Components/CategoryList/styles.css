@@ -1,0 +1,29 @@
+.category-list-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  padding-right: 10px;
+}
+
+.category-list-item {
+  align-items: center;
+  background-color: orange;
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 1.5vh;
+  justify-content: flex-end;
+  list-style: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5%;
+  text-align: left;
+
+
+}
+
+@media screen and ( min-width : 800px ) {
+
+  .category-list-item {
+    font-size: 2vh;
+  }
+}

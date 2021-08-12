@@ -1,0 +1,16 @@
+.link-cart-icon.animated {
+  animation: spin 1.5s linear 1;
+}
+
+@keyframes spin {
+
+  0% { transform: rotate(0deg);}
+
+  25% { transform: rotate(25deg);}
+
+  50% { transform: rotate(0deg);}
+
+  75% { transform: rotate(-25deg);}
+
+  100% { transform: rotate(0deg);}
+}
