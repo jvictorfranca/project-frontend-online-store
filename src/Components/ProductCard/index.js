@@ -23,7 +23,6 @@ class ProductCard extends React.Component {
       currency: 'BRL',
     }).format(price);
     const cartNames = cart.map((cartProduct) => cartProduct.title);
-    console.log(cartNames.includes(product.title));
     return (
       <section
         data-testid="product"
