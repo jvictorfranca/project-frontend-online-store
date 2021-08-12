@@ -67,8 +67,10 @@ class ProductDetails extends React.Component {
           </h2>
           <h3>
             Preço do carrinho:
-            { cartTotal } <br></br>
-            Quantidade: 
+            { cartTotal }
+            {' '}
+            <br />
+            Quantidade:
             {quant}
           </h3>
           <div className="bnts-cart">
