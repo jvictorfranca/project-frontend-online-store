@@ -5,7 +5,6 @@ import CartButton from '../Components/CartButton';
 import * as api from '../services/api';
 import CategoryList from '../Components/CategoryList';
 
-
 class ProductsList extends React.Component {
   constructor(props) {
     super(props);
