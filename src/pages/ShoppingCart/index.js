@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart, FaReply } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import CartItem from '../Components/CartItem';
+import CartItem from '../../Components/CartItem';
+
+import './styles.css';
 
 export default class ShoppingCart extends React.Component {
   render() {
@@ -16,14 +18,16 @@ export default class ShoppingCart extends React.Component {
 
     return (
       <>
-        <Link to="/">Voltar para Home</Link>
-        <div>
+        <header className="cart-header">
+          <Link to="/">
+            <FaReply size="2em" />
+          </Link>
           <span>
             <FaShoppingCart size="2em" />
           </span>
           <h1>Carrinho de Compras</h1>
-        </div>
-        <div style={ { listStyle: 'none' } }>
+        </header>
+        <ul className="cart-items-list">
           {
             cart.length
               ? [
@@ -37,8 +41,7 @@ export default class ShoppingCart extends React.Component {
                   />
                 )),
                 <h3 key="totalPrice">
-                  Preço Total:
-                  { cartTotal }
+                  { `Valor Total da Compra: ${cartTotal}` }
                 </h3>,
                 <Link
                   key="checkout"
@@ -56,7 +59,7 @@ export default class ShoppingCart extends React.Component {
               ]
               : <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
           }
-        </div>
+        </ul>
       </>
     );
   }
