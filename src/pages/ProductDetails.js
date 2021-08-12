@@ -4,6 +4,7 @@ import { FaCartPlus } from 'react-icons/fa';
 
 import CartButton from '../Components/CartButton';
 import EvaluationForm from '../Components/EvaluationForm';
+import './ProductDetailsStyle.css';
 
 class ProductDetails extends React.Component {
   freeShipping(shipping) {
@@ -18,33 +19,57 @@ class ProductDetails extends React.Component {
     const { props } = this;
     const { location: { state }, addToCart } = props;
     const { product } = state;
-    const { id, title, thumbnail, price, shipping } = product;
+    const { id, title, thumbnail, price, shipping, condition } = product;
+    const marca = title;
+    const condicao = condition;
+    console.log(product);
+
     return (
       <main>
-        <CartButton />
-        <p data-testid="product-detail-name">
-          {`Name: ${title}`}
-        </p>
-        <p>
-          {`ID: ${id}`}
-        </p>
+        <div className="header-box">
+          <CartButton />
+        </div>
+        <div className="container-title">
+          <p data-testid="product-detail-name" className="title-product">
+            {`Name: ${title}`}
+          </p>
 
-        <img src={ thumbnail } alt="Thumbnail" />
-
-        <p>
-          {`price: ${price}`}
-        </p>
+          <p className="title-product hiden">
+            {`ID: ${id}`}
+          </p>
+          <p className="title-product">
+            {`Preço: $${price}`}
+          </p>
+        </div>
+        <div className="container-img">
+          <img src={ thumbnail } alt="Thumbnail" className="img-cart" />
+          <div className="details">
+            <h2>Detalhes</h2>
+            <p>
+              Marca:
+              {marca}
+            </p>
+            <p>
+              Condição:
+              {condicao}
+            </p>
+          </div>
+        </div>
 
         {this.freeShipping(shipping)}
         <button
+          className="button-cart"
           data-testid="product-detail-add-to-cart"
           type="button"
           onClick={ () => addToCart(product) }
         >
+
           <FaCartPlus size="2em" />
+          <p className="bnt-text">Adcionar ao carrinho</p>
         </button>
 
         <EvaluationForm />
+
       </main>
     );
   }
@@ -56,6 +81,7 @@ ProductDetails.propTypes = {
       product: PropTypes.shape({
         title: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
+        condition: PropTypes.string.isRequired,
         id: PropTypes.string.isRequired,
         thumbnail: PropTypes.string.isRequired,
         shipping: PropTypes.shape({
