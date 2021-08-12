@@ -57,6 +57,12 @@ button {
   padding-top: 20px;
 }
 
+.section-carrinho {
+  margin-bottom: 200px;
+  margin-top: 200px;
+}
+
+
 @media ( max-width : 600px ) {
 
   .img-cart {

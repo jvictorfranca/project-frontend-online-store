@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaCartPlus } from 'react-icons/fa';
 
+import DetailsItem from '../Components/DetailsItem/index';
 import CartButton from '../Components/CartButton';
 import EvaluationForm from '../Components/EvaluationForm';
+
 import './ProductDetailsStyle.css';
 
 class ProductDetails extends React.Component {
@@ -17,10 +19,11 @@ class ProductDetails extends React.Component {
 
   render() {
     const { props } = this;
-    const { location: { state }, addToCart } = props;
+    const { location: { state }, addToCart, subFromCart, removeFromCart } = props;
     const { product } = state;
     const { id, title, thumbnail, price, shipping, condition } = product;
     const marca = title;
+    const { cartTotal } = this.props;
     const condicao = condition;
     console.log(product);
 
@@ -57,16 +60,26 @@ class ProductDetails extends React.Component {
         </div>
 
         {this.freeShipping(shipping)}
-        <button
-          className="button-cart"
-          data-testid="product-detail-add-to-cart"
-          type="button"
-          onClick={ () => addToCart(product) }
-        >
-
-          <FaCartPlus size="2em" />
-          <p className="bnt-text">Adcionar ao carrinho</p>
-        </button>
+        <div className="section-carrinho">
+          <h2>
+            Carrinho
+            <FaCartPlus size="2em" />
+          </h2>
+          <h3>
+            Preço do carrinho:
+            {' '}
+            { cartTotal }
+          </h3>
+          <div className="bnts-cart">
+            <DetailsItem
+              key={ product.id }
+              product={ product }
+              onAddClick={ () => addToCart(product) }
+              onSubClick={ () => subFromCart(product) }
+              onRemoveClick={ () => removeFromCart(product) }
+            />
+          </div>
+        </div>
 
         <EvaluationForm />
 
@@ -91,6 +104,9 @@ ProductDetails.propTypes = {
     }),
   }).isRequired,
   addToCart: PropTypes.func.isRequired,
+  cartTotal: PropTypes.string.isRequired,
+  subFromCart: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;

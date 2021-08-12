@@ -108,7 +108,14 @@ class App extends React.Component {
           <Route
             path="/product/:id"
             render={
-              (props) => <ProductDetails addToCart={ this.addToCart } { ...props } />
+              (props) => (<ProductDetails
+                removeFromCart={ this.removeFromCart }
+                subFromCart={ this.subFromCart }
+                addToCart={ this.addToCart }
+                cart={ cart }
+                cartTotal={ total }
+                { ...props }
+              />)
             }
           />
           <Route path="/finish" component={ FinishPurchase } />
