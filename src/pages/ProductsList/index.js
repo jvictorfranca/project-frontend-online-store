@@ -15,6 +15,7 @@ class ProductsList extends React.Component {
       category: '',
       products: [],
       doneSearching: false,
+      sorted: '',
     };
     this.handleQuerry = this.handleQuerry.bind(this);
     this.handleButton = this.handleButton.bind(this);
@@ -49,10 +50,20 @@ class ProductsList extends React.Component {
     });
   }
 
+  sortProducts(array) {
+    const { sorted } = this.state;
+    if (sorted === 'ascending') {
+      array.sort((a, b) => a.price - b.price);
+    } else if (sorted === 'descending') {
+      array.sort((a, b) => b.price - a.price);
+    }
+  }
+
   render() {
     const { state, props } = this;
-    const { searching, products, doneSearching } = state;
+    const { searching, products, doneSearching, sorted } = state;
     const { addToCart, quant, cart } = props;
+    this.sortProducts(products);
 
     return (
       <main data-testid="home-initial-message" className="main-container">
@@ -71,6 +82,17 @@ class ProductsList extends React.Component {
           >
             Search
           </button>
+          <select
+            name="sorted"
+            id="sorted"
+            value={ sorted }
+            onChange={ this.handleQuerry }
+          >
+            <option value="">Select by price</option>
+            <option value="ascending">Ascending price</option>
+            <option value="descending">Descending price</option>
+
+          </select>
           <CartButton quant={ quant } />
         </section>
         <section className="products-category-container">
