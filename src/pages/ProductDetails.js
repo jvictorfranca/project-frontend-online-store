@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaCartPlus } from 'react-icons/fa';
 
-import DetailsItem from '../Components/DetailsItem/index';
+import DetailsItem from '../Components/DetailsItem';
 import CartButton from '../Components/CartButton';
 import EvaluationForm from '../Components/EvaluationForm';
 
