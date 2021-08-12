@@ -19,17 +19,22 @@ class ProductDetails extends React.Component {
 
   render() {
     const { props } = this;
-    const { location: { state }, addToCart, quant, subFromCart, removeFromCart } = props;
+    const {
+      location: { state },
+      addToCart,
+      cartTotalItems,
+      getProductQuantity,
+      subFromCart,
+      removeFromCart } = props;
     const { product } = state;
     const { id, title, thumbnail, price, shipping, condition } = product;
     const marca = title;
     const { cartTotal } = this.props;
     const condicao = condition;
-    console.log(product);
 
     return (
       <main>
-        <CartButton quant={ quant } />
+        <CartButton quant={ cartTotalItems } />
         <p data-testid="product-detail-name">
           {`Name: ${title}`}
         </p>
@@ -70,15 +75,21 @@ class ProductDetails extends React.Component {
             { cartTotal }
             <br />
             Quantidade:
-            {quant}
+            {getProductQuantity(id)}
           </h3>
           <div className="bnts-cart">
             <DetailsItem
               key={ product.id }
-              product={ product }
-              onAddClick={ () => addToCart(product) }
-              onSubClick={ () => subFromCart(product) }
-              onRemoveClick={ () => removeFromCart(product) }
+              product={ { ...product, quant: getProductQuantity(id) } }
+              onAddClick={
+                () => addToCart({ ...product, quant: getProductQuantity(id) })
+              }
+              onSubClick={
+                () => subFromCart({ ...product, quant: getProductQuantity(id) })
+              }
+              onRemoveClick={
+                () => removeFromCart({ ...product, quant: getProductQuantity(id) })
+              }
             />
           </div>
         </div>
@@ -106,7 +117,8 @@ ProductDetails.propTypes = {
     }),
   }).isRequired,
   addToCart: PropTypes.func.isRequired,
-  quant: PropTypes.number.isRequired,
+  cartTotalItems: PropTypes.number.isRequired,
+  getProductQuantity: PropTypes.func.isRequired,
   subFromCart: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired,
   cartTotal: PropTypes.string.isRequired,

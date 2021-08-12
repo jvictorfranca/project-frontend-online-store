@@ -23,7 +23,7 @@ export default class ShoppingCart extends React.Component {
             <FaReply size="2em" />
           </Link>
           <span>
-            <FaShoppingCart size="2em" />
+            <FaShoppingCart className="link-cart-icon" size="2em" />
           </span>
           <h1>Carrinho de Compras</h1>
         </header>
