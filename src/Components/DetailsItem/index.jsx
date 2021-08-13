@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FaMinusCircle, FaPlusCircle, FaTimesCircle } from 'react-icons/fa';
 import './style.css';
 
-const CartItem = ({
+const DetailsItem = ({
   product: {
     id,
     available_quantity: availableQuantity,
@@ -22,9 +22,9 @@ const CartItem = ({
       <p>Apagar</p>
       <FaTimesCircle size="2em" />
     </button>
-    <span data-testid="shopping-cart-product-name" className="cart-i" />
+    <span className="cart-i" />
     <button
-      data-testid="product-decrease-quantity"
+      disabled={ quant <= 0 }
       type="button"
       onClick={ onSubClick }
     >
@@ -33,7 +33,7 @@ const CartItem = ({
     </button>
 
     <button
-      data-testid="product-increase-quantity"
+      data-testid="product-detail-add-to-cart"
       disabled={ quant >= availableQuantity }
       type="button"
       onClick={ onAddClick }
@@ -45,7 +45,7 @@ const CartItem = ({
   </li>
 );
 
-CartItem.propTypes = {
+DetailsItem.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -58,4 +58,4 @@ CartItem.propTypes = {
   onRemoveClick: PropTypes.func.isRequired,
 };
 
-export default CartItem;
+export default DetailsItem;

@@ -13,7 +13,7 @@
   border: solid black 2px;
 }
 
-h1 {
+.product h1 {
   font-size: 1.5vh;
   min-height: 6vh;
 

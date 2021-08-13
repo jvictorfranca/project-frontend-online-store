@@ -51,7 +51,6 @@ class FinishPurchase extends React.Component {
     const { props } = this;
     const { state } = props.location;
     const { products, sum } = state;
-    console.log(products);
     const { name, email, cpf, phone, cep, address } = this.state;
 
     return (
@@ -162,14 +161,9 @@ class FinishPurchase extends React.Component {
 }
 
 FinishPurchase.propTypes = {
-  product: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    quant: PropTypes.string.isRequired }).isRequired,
-
   location: PropTypes.shape({
     state: PropTypes.shape({
-      sum: PropTypes.number.isRequired,
+      sum: PropTypes.string.isRequired,
       products: PropTypes.arrayOf(PropTypes.object),
 
     }).isRequired,

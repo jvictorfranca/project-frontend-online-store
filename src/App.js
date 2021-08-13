@@ -112,6 +112,17 @@ class App extends React.Component {
 
   cartQuantity = (cart) => cart.reduce(((sum, product) => product.quant + sum), 0)
 
+  productQuantityById = (id) => {
+    const { cart } = this.state;
+    const product = cart.find(({ id: productId }) => id === productId);
+
+    if (!product) {
+      return 0;
+    }
+
+    return product.quant;
+  }
+
   updateLocalStorage = () => {
     const { state } = this;
     const object = JSON.stringify(state);
@@ -119,13 +130,13 @@ class App extends React.Component {
   }
 
   animateButton() {
-    const oi = document.getElementsByClassName('link-cart-icon');
+    const cartIcon = document.getElementsByClassName('link-cart-icon');
 
-    if (!oi[0].classList.contains('animated')) {
-      oi[0].classList.add('animated');
+    if (!cartIcon[0].classList.contains('animated')) {
+      cartIcon[0].classList.add('animated');
       const ONEANDAHALF_SECONDS = 1500;
       setTimeout(() => {
-        oi[0].classList.remove('animated');
+        cartIcon[0].classList.remove('animated');
       }, ONEANDAHALF_SECONDS);
     }
   }
@@ -165,7 +176,8 @@ class App extends React.Component {
                 cart={ cart }
                 cartTotal={ total }
                 { ...props }
-                quant={ quant }
+                cartTotalItems={ quant }
+                getProductQuantity={ this.productQuantityById }
               />)
             }
           />
