@@ -149,7 +149,7 @@ class App extends React.Component {
         <BrowserRouter>
           <Route
             exact
-            path="/"
+            path="/project-frontend-online-store"
             render={ () => (<ProductsList
               addToCart={ this.addToCart }
               quant={ quant }
