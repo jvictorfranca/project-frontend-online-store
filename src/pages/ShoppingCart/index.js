@@ -19,7 +19,7 @@ export default class ShoppingCart extends React.Component {
     return (
       <>
         <header className="cart-header">
-          <Link to="/">
+          <Link to="/project-frontend-online-store">
             <FaReply size="2em" />
           </Link>
           <span>
