@@ -10,20 +10,18 @@
 }
 
 .category-container {
-  background-color: red;
   justify-self: end;
   min-height: 100vh;
 }
 
 .empty-search-text {
-  background-color: yellow;
   margin: auto;
   margin-top: 0;
 }
 
 .search-container {
   align-items: center;
-  background-color: green;
+  background-color: rgb(237, 226, 133);
   display: flex;
   justify-content: center;
   padding-left: 15%;
@@ -32,7 +30,7 @@
 @media screen and ( min-width : 800px ) {
 
   .category-container {
-    background-color: blue;
+    background-color: rgb(255, 252, 228);
     justify-self: end;
     min-height: 100vh;
   }

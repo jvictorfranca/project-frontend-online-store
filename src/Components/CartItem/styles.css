@@ -1,5 +1,6 @@
 .cart-item-container {
   align-items: center;
+  background-color: rgb(255, 252, 228);
   border: 2px dotted black;
   display: flex;
   flex-flow: row wrap;

@@ -7,7 +7,6 @@
 
 .category-list-item {
   align-items: center;
-  background-color: orange;
   display: flex;
   flex-direction: row-reverse;
   font-size: 1.5vh;
